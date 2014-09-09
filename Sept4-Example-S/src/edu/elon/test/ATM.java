@@ -53,13 +53,14 @@ public class ATM {
    * @throws IllegalArgumentException if requested deposit is less
    *         then 0
    */
-  public void deposit(double amount) throws IllegalArgumentException {
+  public double deposit(double amount) throws IllegalArgumentException {
     if (amount < 0.0) {
       throw new IllegalArgumentException("Only positive values");
     } else {
       balance = balance + amount;
       numberOfDeposits++;
     }
+    return balance;
   }
 
   /**
@@ -96,13 +97,13 @@ public class ATM {
    *         less than the amount currently in account balance.
    */
   public double withdraw(double amount) throws IllegalArgumentException {
-    if ((amount < 0) || (amount < balance)) {
+    if ((amount < 0) || (amount > balance)) {
       throw new IllegalArgumentException("Invalid withdrawal");
     } else {
       balance = balance - amount;
       numberOfWithdrawals++;
     }
-    return amount;
+    return balance;
   }
 
 }
